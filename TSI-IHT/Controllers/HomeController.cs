@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using TSI_IHT.Models;
 
 namespace TSI_IHT.Controllers
@@ -11,14 +10,15 @@ namespace TSI_IHT.Controllers
     {
         public ActionResult Index()
         {
+            var jsonString = System.IO.File.ReadAllText("C:\\Users\\kboddya\\Project\\TSI-IHT\\Questions.json");
+
+            var risks = JsonConvert.DeserializeObject<List<RiskObject>>(jsonString);
+
             var model = new ListOfRisks
             {
-                Risks = new List<RiskObject>
-                {
-                    new RiskObject { ID = 1, Name = "Risk 1", Description = "Description 1", TP = LevelOfRisc.Low, VL = LevelOfRisc.Medium, SEV = LevelOfRisc.High, DET = LevelOfRisc.Medium, Recommendation = "Recommendation 1" },
-                    new RiskObject { ID = 2, Name = "Risk 2", Description = "Description 2", TP = LevelOfRisc.Medium, VL = LevelOfRisc.High, SEV = LevelOfRisc.Low, DET = LevelOfRisc.Medium, Recommendation = "Recommendation 2" },
-                }
+                Risks = risks ?? new List<RiskObject>()
             };
+            
             return View(model);
         }
 
@@ -28,7 +28,7 @@ namespace TSI_IHT.Controllers
             foreach (var riskObject in model.Risks)
             {
                 var risk = (int)riskObject.TP + (int)riskObject.VL + (int)riskObject.SEV + (int)riskObject.DET;
-                if (risk < 20) 
+                if (risk < 20)
                 {
                     riskObject.Risk = LevelOfRisc.Low;
                 }
@@ -41,6 +41,7 @@ namespace TSI_IHT.Controllers
                     riskObject.Risk = LevelOfRisc.High;
                 }
             }
+
             return View(model);
         }
     }
