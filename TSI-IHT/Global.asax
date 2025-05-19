@@ -1,0 +1,1 @@
+<%@ Application Codebehind="Global.asax.cs" Inherits="TSI_IHT.MvcApplication" Language="C#" %>

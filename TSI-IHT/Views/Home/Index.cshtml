@@ -1,0 +1,108 @@
+@{
+    ViewBag.Title = "Risk analysis";
+}
+
+@using TSI_IHT.Models
+@model TSI_IHT.Models.ListOfRisks
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        @Html.TextBoxFor(m => m.CompanyName, new { @placeholder = "Company Name", @class = "form-control", style = "margin-bottom: 10px;" })
+
+        <div class="row">
+            <div class="col-md-6">
+                <h4><b>Abbreviations:</b></h4>
+                <p>TP - Threat Probability (what is likelihood of the incident)</p>
+                <p>VL - Vulnerability Level (how easy to exploit)</p>
+                <p>SEV - Severity/Business impact</p>
+                <p>DET - Detect Ability</p>
+            </div>
+            <div class="col-md-6">
+                <canvas id="riskPieChart" width="10" height="10"></canvas>
+
+                @section scripts {
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script>
+                        // Pass your value (0-100) from the model, e.g. @Model.GlobalRisk
+                        const value = @Model.GlobalRisk;
+                        const data = {
+                            labels: ['Risk', 'Good'],
+                            datasets: [{
+                                data: [value, 100 - value],
+                                backgroundColor: ['red', 'green']
+                            }]
+                        };
+                
+                        new Chart(document.getElementById('riskPieChart'), {
+                            type: 'pie',
+                            data: data,
+                            options: {
+                                plugins: {
+                                    legend: { display: false }
+                                }
+                            }
+                        });
+                    </script>
+                }
+
+            </div>
+        </div>
+        <hr>
+        <h4><b>List of risks:</b></h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>TP</th>
+                <th>VL</th>
+                <th>SEV</th>
+                <th>DET</th>
+                <th>Risk Level</th>
+                <th>Recommendation</th>
+            </tr>
+            </thead>
+            <tbody>
+            @for (var i = 0; i < Model.Risks.Count; ++i)
+            {
+                <tr>
+                    <td>@Html.TextBoxFor(m => m.Risks[i].Name, new { @readonly = true })</td>
+                    <td>@Html.TextBoxFor(m => m.Risks[i].Description, new { @readonly = true })</td>
+                    <td>@Html.DropDownListFor(m => m.Risks[i].TP, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
+                        {
+                            @class = "form-control",
+                            @style = "width: 100px; margin-bottom: 10px;",
+                            @placeholder = "TP"
+                        })</td>
+
+                    <td>@Html.DropDownListFor(m => m.Risks[i].VL, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
+                        {
+                            @class = "form-control",
+                            @style = "width: 100px; margin-bottom: 10px;",
+                            @placeholder = "VL"
+                        })</td>
+
+                    <td>@Html.DropDownListFor(m => m.Risks[i].SEV, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
+                        {
+                            @class = "form-control",
+                            @style = "width: 100px; margin-bottom: 10px;",
+                            @placeholder = "SEV"
+                        })</td>
+                    <td>@Html.DropDownListFor(m => m.Risks[i].DET, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
+                        {
+                            @class = "form-control",
+                            @style = "width: 100px; margin-bottom: 10px;",
+                            @placeholder = "DET"
+                        })</td>
+                    <td>@Html.DisplayFor(m => m.Risks[i].Risk)</td>
+                    <td><a href="javascript:void(0);"
+                           onclick="alert('@Model.Risks[i].Recommendation');">&#x1F6C8;</a></td>
+                </tr>
+                @Html.HiddenFor(m=> m.Risks[i].Recommendation)
+            }
+            </tbody>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+}
