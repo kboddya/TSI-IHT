@@ -66,9 +66,11 @@
             <tbody>
             @for (var i = 0; i < Model.Risks.Count; ++i)
             {
+                @Html.HiddenFor(m => m.Risks[i].Name)
+                @Html.HiddenFor(m => m.Risks[i].Description)
                 <tr>
-                    <td>@Html.TextBoxFor(m => m.Risks[i].Name, new { @readonly = true })</td>
-                    <td>@Html.TextBoxFor(m => m.Risks[i].Description, new { @readonly = true })</td>
+                    <td>@Model.Risks[i].Name</td>
+                    <td>@Model.Risks[i].Description</td>
                     <td>@Html.DropDownListFor(m => m.Risks[i].TP, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
                         {
                             @class = "form-control",

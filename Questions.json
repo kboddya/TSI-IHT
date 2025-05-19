@@ -1,14 +1,12 @@
 [
   {
-    "ID": 1,
     "Name": "SQL Injection",
     "Description": "Risk of SQL injection in login form",
     "Recommendation": "Use parameterized queries"
   },
   {
-    "ID": 2,
     "Name": "XSS",
-    "Description": "Cross-site scripting vulnerability",
+    "Description": "Cross-site scripting vulnerabilityasdjfjndafjkfaasasdfasfllafj",
     "Recommendation": "Sanitize user input"
   }
 ]
