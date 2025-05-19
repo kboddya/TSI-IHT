@@ -1,4 +1,4 @@
 ## Screenshots
-![Befor](Screenshots/photo_2025-05-19_22-06-29.jpg)
-![After sending](Screenshots/photo_2025-05-19_22-07-02.jpg)
-![Recomendation](Screenshots/photo_2025-05-19_22-07-00.jpg)
+![Befor](Screenshots/Screenshot 2025-05-19 at 22-45-21 Risk analysis.png)
+![After sending](Screenshots/Screenshot 2025-05-19 at 22-45-42 Risk analysis.png)
+![Recomendation](Screenshots/photo_2025-05-19_22-46-28.jpg)
