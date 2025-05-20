@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using Newtonsoft.Json;
 using TSI_IHT.Models;
 
@@ -25,23 +26,7 @@ namespace TSI_IHT.Controllers
         [HttpPost]
         public ActionResult Index(ListOfRisks model)
         {
-            foreach (var riskObject in model.Risks)
-            {
-                var risk = (int)riskObject.TP + (int)riskObject.VL + (int)riskObject.SEV + (int)riskObject.DET;
-                if (risk < 20)
-                {
-                    riskObject.Risk = LevelOfRisc.Low;
-                }
-                else if (risk < 40)
-                {
-                    riskObject.Risk = LevelOfRisc.Medium;
-                }
-                else
-                {
-                    riskObject.Risk = LevelOfRisc.High;
-                }
-            }
-
+            if (model.CompanyName.IsEmpty ()) model.CompanyName = "Noname";
             return View(model);
         }
     }

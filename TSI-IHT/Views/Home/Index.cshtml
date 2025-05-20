@@ -8,24 +8,35 @@
 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div style="display: flex; flex-direction: column; align-items: center;">
-        @Html.TextBoxFor(m => m.CompanyName, new { @placeholder = "Company Name", @class = "form-control", style = "margin-bottom: 10px;" })
+        @if (Model.CompanyName.IsEmpty())
+        {
+            @Html.TextBoxFor(m => m.CompanyName, new { @placeholder = "Company Name", @class = "form-control", style = "margin-bottom: 10px;" })
+        }
+        else
+        {
+            <h3>@Model.CompanyName</h3>
+        }
 
-        <div class="row">
-            <div class="col-md-6">
-                <h4><b>Abbreviations:</b></h4>
-                <p>TP - Threat Probability (what is likelihood of the incident)</p>
-                <p>VL - Vulnerability Level (how easy to exploit)</p>
-                <p>SEV - Severity/Business impact</p>
-                <p>DET - Detect Ability</p>
-            </div>
-            <div class="col-md-6">
-                <canvas id="riskPieChart" width="10" height="10"></canvas>
 
-                @section scripts {
-                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                    <script>
-                        // Pass your value (0-100) from the model, e.g. @Model.GlobalRisk
-                        const value = @Model.GlobalRisk;
+
+        @if (!Model.CompanyName.IsEmpty())
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><b>Abbreviations:</b></h4>
+                    <p>TP - Threat Probability (what is likelihood of the incident)</p>
+                    <p>VL - Vulnerability Level (how easy to exploit)</p>
+                    <p>SEV - Severity/Business impact</p>
+                    <p>DET - Detect Ability</p>
+                </div>
+                <div class="col-md-3">
+                    <canvas id="riskPieChart" width="100" height="100"></canvas>
+
+                    @section scripts {
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <script>
+                            // Pass your value (0-100) from the model, e.g. @Model.GlobalRisk
+                            const value = @Model.GlobalRisk;
                         const data = {
                             labels: ['Risk', 'Good'],
                             datasets: [{
@@ -43,11 +54,29 @@
                                 }
                             }
                         });
-                    </script>
-                }
+                        </script>
+                    }
 
+                </div>
+                <div class="col-md-3">
+                    <h5><b>Global risk</b>: @Model.GlobalRisk %</h5>
+                    <h5><b>Average TP</b>: @Model.TP</h5>
+                    <h5><b>Average VL</b>: @Model.VL</h5>
+                    <h5><b>Average SEV</b>: @Model.SEV</h5>
+                    <h5><b>Average DET</b>: @Model.DET</h5>
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div>
+                <h4><b>Abbreviations:</b></h4>
+                <p>TP - Threat Probability (what is likelihood of the incident)</p>
+                <p>VL - Vulnerability Level (how easy to exploit)</p>
+                <p>SEV - Severity/Business impact</p>
+                <p>DET - Detect Ability</p>
+            </div>
+        }
         <hr>
         <h4><b>List of risks:</b></h4>
         <table class="table">
@@ -71,40 +100,59 @@
                 <tr>
                     <td>@Model.Risks[i].Name</td>
                     <td>@Model.Risks[i].Description</td>
-                    <td>@Html.DropDownListFor(m => m.Risks[i].TP, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
-                        {
-                            @class = "form-control",
-                            @style = "width: 100px; margin-bottom: 10px;",
-                            @placeholder = "TP"
-                        })</td>
+                    @if (Model.CompanyName.IsEmpty())
+                    {
+                        <td>@Html.DropDownListFor(m => m.Risks[i].TP, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
+                            {
+                                @class = "form-control",
+                                @style = "width: 100px; margin-bottom: 10px;",
+                                @placeholder = "TP"
+                            })</td>
 
-                    <td>@Html.DropDownListFor(m => m.Risks[i].VL, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
-                        {
-                            @class = "form-control",
-                            @style = "width: 100px; margin-bottom: 10px;",
-                            @placeholder = "VL"
-                        })</td>
+                        <td>@Html.DropDownListFor(m => m.Risks[i].VL, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
+                            {
+                                @class = "form-control",
+                                @style = "width: 100px; margin-bottom: 10px;",
+                                @placeholder = "VL"
+                            })</td>
 
-                    <td>@Html.DropDownListFor(m => m.Risks[i].SEV, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
-                        {
-                            @class = "form-control",
-                            @style = "width: 100px; margin-bottom: 10px;",
-                            @placeholder = "SEV"
-                        })</td>
-                    <td>@Html.DropDownListFor(m => m.Risks[i].DET, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
-                        {
-                            @class = "form-control",
-                            @style = "width: 100px; margin-bottom: 10px;",
-                            @placeholder = "DET"
-                        })</td>
+                        <td>@Html.DropDownListFor(m => m.Risks[i].SEV, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
+                            {
+                                @class = "form-control",
+                                @style = "width: 100px; margin-bottom: 10px;",
+                                @placeholder = "SEV"
+                            })</td>
+                        <td>@Html.DropDownListFor(m => m.Risks[i].DET, new SelectList(Enum.GetValues(typeof(LevelOfRisc))), new
+                            {
+                                @class = "form-control",
+                                @style = "width: 100px; margin-bottom: 10px;",
+                                @placeholder = "DET"
+                            })</td>
+                    }
+                    else
+                    {
+                        <td>@Model.Risks[i].TP</td>
+                        <td>@Model.Risks[i].VL</td>
+                        <td>@Model.Risks[i].SEV</td>
+                        <td>@Model.Risks[i].DET</td>
+                    }
                     <td>@Html.DisplayFor(m => m.Risks[i].Risk)</td>
-                    <td><a href="javascript:void(0);"
+                    <td>
+                        <a href="javascript:void(0);"
                            onclick="alert('@Model.Risks[i].Recommendation');">&#x1F6C8;</a></td>
                 </tr>
-                @Html.HiddenFor(m=> m.Risks[i].Recommendation)
+                @Html.HiddenFor(m => m.Risks[i].Recommendation)
             }
             </tbody>
         </table>
     </div>
-    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+    if (Model.CompanyName.IsEmpty())
+    {
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+    }
+    else
+    {
+        <button class="btn" style="margin-top: 10px; color: white;"><a href="@Url.Action("Index")">Analise new
+                company</a></button>
+    }
 }
