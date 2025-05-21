@@ -1,12 +1,126 @@
 [
   {
-    "Name": "SQL Injection",
-    "Description": "Risk of SQL injection in login form",
-    "Recommendation": "Use parameterized queries"
+    "Name": "Access Rights",
+    "Description": "Access rights to information and other associated assets shall be provisioned, reviewed, modified, and removed per the organization's access control policies.",
+    "Recommendation": "Follow topic-specific access control policies for provisioning, review, modification, and removal."
   },
   {
-    "Name": "XSS",
-    "Description": "Cross-site scripting vulnerabilityasdjfjndafjkfaasasdfasfllafj",
-    "Recommendation": "Sanitize user input"
+    "Name": "Response to Information Security Incidents",
+    "Description": "Information security incidents shall be responded to according to documented procedures.",
+    "Recommendation": "Establish and follow documented incident response procedures."
+  },
+  {
+    "Name": "Learning from Information Security Incidents",
+    "Description": "Knowledge gained from security incidents shall be used to improve controls.",
+    "Recommendation": "Update controls based on lessons learned from security incidents."
+  },
+  {
+    "Name": "Information Security During Disruption",
+    "Description": "The organization shall plan how to maintain information security at an appropriate level during disruption.",
+    "Recommendation": "Develop and test plans for maintaining security during disruptions."
+  },
+  {
+    "Name": "Protection of Records",
+    "Description": "Records shall be protected from loss, destruction, falsification, unauthorized access, and unauthorized release.",
+    "Recommendation": "Implement safeguards to prevent loss, destruction, falsification, or unauthorized access/release."
+  },
+  {
+    "Name": "Privacy and Protection of Personal Identifiable Information (PII)",
+    "Description": "The organization shall identify and meet requirements regarding privacy and PII protection as per applicable laws, regulations, and contracts.",
+    "Recommendation": "Comply with all legal and contractual requirements for PII privacy and protection."
+  },
+  {
+    "Name": "Physical Security Monitoring",
+    "Description": "Premises shall be continuously monitored for unauthorized physical access.",
+    "Recommendation": "Implement continuous monitoring of physical access to premises."
+  },
+  {
+    "Name": "Protection Against Physical and Environmental Threats",
+    "Description": "Protect against natural disasters and intentional or unintentional threats to infrastructure.",
+    "Recommendation": "Design and implement controls to mitigate physical and environmental threats."
+  },
+  {
+    "Name": "Clear Desk and Clear Screen",
+    "Description": "Clear desk rules for papers and removable storage media and clear screen rules for information processing facilities shall be defined and appropriately enforced.",
+    "Recommendation": "Define and enforce clear desk and clear screen policies."
+  },
+  {
+    "Name": "Storage Media",
+    "Description": "Storage media shall be managed through their life cycle of acquisition, use, transportation and disposal in accordance with the organization's classification scheme and handling requirements.",
+    "Recommendation": "Manage storage media life cycle per classification and handling policies."
+  },
+  {
+    "Name": "Supporting Utilities",
+    "Description": "Information processing facilities shall be protected from power failures and other disruptions caused by failures in supporting utilities.",
+    "Recommendation": "Safeguard facilities from power and utility failures with adequate controls."
+  },
+  {
+    "Name": "Cabling Security",
+    "Description": "Cables carrying power, data or supporting information services shall be protected from interception, interference or damage.",
+    "Recommendation": "Physically protect and monitor all power and data cabling."
+  },
+  {
+    "Name": "Equipment Maintenance",
+    "Description": "Equipment shall be maintained correctly to ensure availability, integrity and confidentiality of information.",
+    "Recommendation": "Schedule and perform secure maintenance of equipment."
+  },
+  {
+    "Name": "Privileged Access Rights",
+    "Description": "The allocation and use of privileged access rights shall be restricted and managed.",
+    "Recommendation": "Restrict and monitor all privileged access."
+  },
+  {"Name": "Information Access Restriction",
+    "Description": "Access to information and other associated assets shall be restricted in accordance with the established topic-specific policy on access control.",
+    "Recommendation": "Apply access restrictions as per organizational policy."
+  },
+  {
+    "Name": "Protection Against Malware",
+    "Description": "Protection against malware shall be implemented and supported by appropriate user awareness.",
+    "Recommendation": "Deploy anti-malware measures and provide user training."
+  },
+  {
+    "Name": "Management of Technical Vulnerabilities",
+    "Description": "Information about technical vulnerabilities of information systems in use shall be obtained; the organization's exposure to such vulnerabilities shall be evaluated and appropriate measures taken.",
+    "Recommendation": "Monitor, assess, and remediate relevant technical vulnerabilities."
+  },
+  {
+    "Name": "Configuration Management",
+    "Description": "Configurations, including security configurations, of hardware, software, services and networks shall be established, documented, implemented, monitored and reviewed.",
+    "Recommendation": "Define, document, implement, monitor, and review configuration management processes."
+  },
+  {
+    "Name": "Information Deletion",
+    "Description": "Information stored in information systems, devices or in any other storage media shall be deleted when no longer required.",
+    "Recommendation": "Delete information from all storage media when no longer needed."
+  },
+  {
+    "Name": "Data Masking",
+    "Description": "Data masking shall be used in accordance with the organization's topic-specific policy on access control and other related policies, and business requirements, taking applicable legislation into consideration.",
+    "Recommendation": "Apply data masking as required by access control and business/legislative policies."
+  },
+  {
+    "Name": "Data Leakage Prevention",
+    "Description": "Data leakage prevention measures shall be applied to systems, networks and any other devices that process, store or transmit sensitive information.",
+    "Recommendation": "Deploy DLP measures across all systems handling sensitive data."
+  },
+  {
+    "Name": "Information Backup",
+    "Description": "Backup copies of information, software and systems shall be maintained and regularly tested in accordance with the agreed topic-specific policy on backup.",
+    "Recommendation": "Maintain and regularly test backup copies per backup policy."
+  },
+  {
+    "Name": "Installation of Software on Operational Systems",
+    "Description": "Procedures and measures shall be implemented to securely manage software installation on operational systems.",
+    "Recommendation": "Establish secure software installation procedures for operational systems."
+  },
+  {
+    "Name": "Security of Network Services",
+    "Description": "Security mechanisms, service levels and service requirements of network services shall be identified, implemented and monitored.",
+    "Recommendation": "Identify, implement, and monitor network service security requirements."
+  },
+  {
+    "Name": "Segregation of Networks",
+    "Description": "Groups of information services, users and information systems shall be segregated in the organization's networks.",
+    "Recommendation": "Segregate information systems, users, and services in networks."
   }
 ]

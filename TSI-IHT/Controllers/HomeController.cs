@@ -27,6 +27,7 @@ namespace TSI_IHT.Controllers
         public ActionResult Index(ListOfRisks model)
         {
             if (model.CompanyName.IsEmpty ()) model.CompanyName = "Noname";
+            model.Risks.RemoveAll(x=> x.Risk == LevelOfRisc.none);
             return View(model);
         }
     }

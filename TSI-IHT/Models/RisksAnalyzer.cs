@@ -4,8 +4,8 @@ namespace TSI_IHT.Models
 {
     public enum LevelOfRisc
     {
-        none = 100,
-        Low = 0,
+        none = 0,
+        Low = 1,
         Medium = 12,
         High = 25
     }
@@ -88,10 +88,10 @@ namespace TSI_IHT.Models
                 {
                     totalRisk += (int)riskObject.TP;
                 }
+                totalRisk/= Risks.Count;
                 
-                if (totalRisk < 20) return LevelOfRisc.Low;
-                if (totalRisk < 40) return LevelOfRisc.Medium;
-                return LevelOfRisc.High;
+                if (totalRisk < 6) return LevelOfRisc.Low;
+                return totalRisk < 18 ? LevelOfRisc.Medium : LevelOfRisc.High;
             }
         }
         
@@ -104,8 +104,10 @@ namespace TSI_IHT.Models
                 {
                     totalRisk += (int)riskObject.VL;
                 }
-                if (totalRisk < 20) return LevelOfRisc.Low;
-                return totalRisk < 40 ? LevelOfRisc.Medium : LevelOfRisc.High;
+                totalRisk/= Risks.Count;
+
+                if (totalRisk < 6) return LevelOfRisc.Low;
+                return totalRisk < 18 ? LevelOfRisc.Medium : LevelOfRisc.High;
             }
         }
         
@@ -118,8 +120,10 @@ namespace TSI_IHT.Models
                 {
                     totalRisk += (int)riskObject.SEV;
                 }
-                if (totalRisk < 20) return LevelOfRisc.Low;
-                return totalRisk < 40 ? LevelOfRisc.Medium : LevelOfRisc.High;
+                totalRisk/= Risks.Count;
+
+                if (totalRisk < 6) return LevelOfRisc.Low;
+                return totalRisk < 18 ? LevelOfRisc.Medium : LevelOfRisc.High;
             }
         }
         
@@ -132,8 +136,10 @@ namespace TSI_IHT.Models
                 {
                     totalRisk += (int)riskObject.DET;
                 }
-                if (totalRisk < 20) return LevelOfRisc.Low;
-                return totalRisk < 40 ? LevelOfRisc.Medium : LevelOfRisc.High;
+                totalRisk/= Risks.Count;
+
+                if (totalRisk < 6) return LevelOfRisc.Low;
+                return totalRisk < 18 ? LevelOfRisc.Medium : LevelOfRisc.High;
             }
         }
     }
